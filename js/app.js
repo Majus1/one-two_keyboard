@@ -6,7 +6,6 @@ function displayKeystroke(pressedKey, displayedKeyValue) {
         // Changes the displayed number on screen with the pressed key.
         displayedKeyValue.innerHTML = `Updated to ${pressedKey}`;
     }
-
     
 }
 // ::::: Function that types out what is pressed on keyboard
