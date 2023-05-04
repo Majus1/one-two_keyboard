@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+	overflow: hidden;
+}
+
+canvas {
+  display: flex;
+}
+
+.hero-s_wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.model-section {
+  flex-grow: 1;
+}
+
+.math-section {
+  min-width: 700px;
+  border: solid 2px red;
+}
