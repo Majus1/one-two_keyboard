@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -29,4 +30,8 @@ canvas {
 .math-section {
   min-width: 700px;
   border: solid 2px red;
+}
+
+.typed-number {
+  font-size: 24px;
 }
