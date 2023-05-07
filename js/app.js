@@ -46,7 +46,7 @@ function displayKeystroke(pressedKey, disKeyValue) {
 
         resultValue += currentComputedValue;
 
-        // Maybe we should make it so that we add template literals witch are once translated.
+        // Maybe we should make it so that we add template literals witch are once translated. THINK ABOU USING eval() function for math actions.
 
 
     }
