@@ -3,7 +3,7 @@ let operation = "";
 
 let previusComputedValue = "";
 let currentComputedValue = "";
-let resultValue = 0;
+let resultValue = "";
 // ::::: Variables :::::
 
 
@@ -34,21 +34,14 @@ function displayKeystroke(pressedKey, disKeyValue) {
         // Erases the displayed value
         disKeyValue.innerHTML = "";
     } else if (pressedKey === "+") {
-        // Selects the addition operation & removes unwanted symbols "+", "-", "/", "*".
-        operation = "addition";
-        currentComputedValue = parseInt(currentDisKeyValue.replace(/[+-]/g, ''));
+        // Saves the currentDisKeyValue to the currentComputedValue variable.
+        currentComputedValue = currentDisKeyValue;
 
         // Resets disKeyValue
         disKeyValue.innerHTML = "";
 
-        // SMIR 
-        console.log(`${operation} operation is selected and ${currentComputedValue} was set as currentComputedValue`);
-
-        resultValue += currentComputedValue;
-
-        // Maybe we should make it so that we add template literals witch are once translated. THINK ABOU USING eval() function for math actions.
-
-
+        // Adds the currentComputedValue to the resultValue expression
+        resultValue = `${resultValue}${currentComputedValue}`
     }
     
 };
@@ -58,6 +51,7 @@ function displayKeystroke(pressedKey, disKeyValue) {
 // ::::: Event listens for keyboard strokes :::::
 document.addEventListener("keydown", function(target) {
 
+    // if((pressedKey === "0" || pressedKey === "1" || pressedKey === "2" || pressedKey === "3" || pressedKey === "4" || pressedKey === "5" || pressedKey === "6" || pressedKey === "7" || pressedKey === "8" || pressedKey === "9" || pressedKey === "+" || pressedKey === "-" || pressedKey === "/" || pressedKey === "*" || pressedKey === "*" ) ) {}
     // Stores pressed key
     let pressedKey = target.key;
     let disKeyValue = document.querySelector(".typed-number");
