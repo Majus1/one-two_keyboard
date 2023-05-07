@@ -43,6 +43,16 @@ function displayKeystroke(pressedKey, disKeyValue) {
         // Adds the currentComputedValue to the simpleMathExpression expression.
         simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
 
+    } else if (pressedKey === "-") {
+        // Saves the currentDisKeyValue to the currentComputedValue variable.
+        currentComputedValue = currentDisKeyValue;
+
+        // Resets disKeyValue.
+        disKeyValue.innerHTML = "";
+
+        // Adds the currentComputedValue to the simpleMathExpression expression.
+        simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
+
     } else if (pressedKey === "Enter") {
         if (resultValue == undefined) {
         // Saves the currentDisKeyValue to the currentComputedValue variable & removes enter.

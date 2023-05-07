@@ -1,4 +1,3 @@
 ::::: To Do :::::
 
-- Continue with the if statement and the eval() function for math actions
-- Continue making opperations functions.
+- Figure out how to make a repeating calculation with minus krat and deljeno.
