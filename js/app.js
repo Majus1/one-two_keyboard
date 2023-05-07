@@ -1,9 +1,9 @@
 // ::::: Variables :::::
 let operation = "";
 
-let previusComputedValue = "";
 let currentComputedValue = "";
-let resultValue = "";
+let simpleMathExpression = "";
+let resultValue;
 // ::::: Variables :::::
 
 
@@ -37,12 +37,27 @@ function displayKeystroke(pressedKey, disKeyValue) {
         // Saves the currentDisKeyValue to the currentComputedValue variable.
         currentComputedValue = currentDisKeyValue;
 
-        // Resets disKeyValue
+        // Resets disKeyValue.
         disKeyValue.innerHTML = "";
 
-        // Adds the currentComputedValue to the resultValue expression
-        resultValue = `${resultValue}${currentComputedValue}`
-    }
+        // Adds the currentComputedValue to the simpleMathExpression expression.
+        simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
+
+    } else if (pressedKey === "Enter") {
+        // Thiggers the eval() function withc calculates the simple math expression.
+
+        // Saves the currentDisKeyValue to the currentComputedValue variable & removes enter.
+        currentComputedValue = currentDisKeyValue.replace(/[Enter]/g, '');
+
+        // Adds the currentComputedValue to the simpleMathExpression expression.
+        simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
+
+        // Calculates the simpleMathExpression expression.
+        resultValue = eval(simpleMathExpression);
+        console.log(resultValue);
+
+        // MAYBE: A function that removes operator
+    } 
     
 };
 // ::::: Function that types out what is pressed on keyboard
