@@ -44,21 +44,29 @@ function displayKeystroke(pressedKey, disKeyValue) {
         simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
 
     } else if (pressedKey === "Enter") {
-        // Thiggers the eval() function withc calculates the simple math expression.
-
+        if (resultValue == undefined) {
         // Saves the currentDisKeyValue to the currentComputedValue variable & removes enter.
         currentComputedValue = currentDisKeyValue.replace(/[Enter]/g, '');
 
         // Adds the currentComputedValue to the simpleMathExpression expression.
-        simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
+        simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`;
 
         // Calculates the simpleMathExpression expression.
         resultValue = eval(simpleMathExpression);
+
+        // Logs the resultValue.
         console.log(resultValue);
 
-        // MAYBE: A function that removes operator
+        } else {
+            // Runs the previus simple expression once more
+            resultValue += eval(simpleMathExpression);
+
+            // Logs the resultValue.
+            console.log(resultValue);
+
+        }
+
     } 
-    
 };
 // ::::: Function that types out what is pressed on keyboard
 
