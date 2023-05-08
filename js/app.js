@@ -31,7 +31,12 @@ function displayKeystroke(pressedKey, disKeyValue) {
         // Changes the displayed number on screen with the pressed key.
         disKeyValue.innerHTML = currentDisKeyValue;
     } else if (pressedKey === "Backspace") {
-        // console.log("Value erased");
+        // Resets following variables to empty
+        operation = "";
+        operationSymbol = "";
+        currentComputedValue = "";
+        simpleMathExpression = "";
+        resultValue = undefined;
 
         // Erases the displayed value
         disKeyValue.innerHTML = "";
@@ -112,10 +117,9 @@ function displayKeystroke(pressedKey, disKeyValue) {
 
             // Logs the resultValue.
             console.log(resultValue);
-
         }
 
-    } 
+    }
 };
 // ::::: Function that types out what is pressed on keyboard
 
