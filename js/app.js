@@ -1,8 +1,10 @@
 // ::::: Variables :::::
 let operation = "";
+let operationSymbol = "";
 
 let currentComputedValue = "";
 let simpleMathExpression = "";
+let previusSimpleMathExpression = "";
 let resultValue;
 // ::::: Variables :::::
 
@@ -37,6 +39,14 @@ function displayKeystroke(pressedKey, disKeyValue) {
         // Saves the currentDisKeyValue to the currentComputedValue variable.
         currentComputedValue = currentDisKeyValue;
 
+        // Resets and stores new opperation type.
+        operation = "";
+        operation = "addition";
+
+        // Resets and stores new operation symbol
+        operationSymbol = "";
+        operationSymbol = "+";
+
         // Resets disKeyValue.
         disKeyValue.innerHTML = "";
 
@@ -46,6 +56,14 @@ function displayKeystroke(pressedKey, disKeyValue) {
     } else if (pressedKey === "-") {
         // Saves the currentDisKeyValue to the currentComputedValue variable.
         currentComputedValue = currentDisKeyValue;
+
+        // Resets and stores new opperation type.
+        operation = "";
+        operation = "substraction";
+
+        // Resets and stores new operation symbol
+        operationSymbol = "";
+        operationSymbol = "-";
 
         // Resets disKeyValue.
         disKeyValue.innerHTML = "";
@@ -67,9 +85,30 @@ function displayKeystroke(pressedKey, disKeyValue) {
         // Logs the resultValue.
         console.log(resultValue);
 
-        } else {
+        } else if (operation === "addition") {
+
+            // Resets the previusSimpleMathExpression variable.
+            previusSimpleMathExpression = "";
+
+            // Reselects the previusSimpleMathExpression variable from numbers on screen.
+            previusSimpleMathExpression = document.querySelector(".typed-number").textContent;
+
             // Runs the previus simple expression once more
-            resultValue += eval(simpleMathExpression);
+            resultValue += eval(`${operationSymbol}${previusSimpleMathExpression}`);
+
+            // Logs the resultValue.
+            console.log(resultValue);
+
+        } else if (operation === "substraction") {
+
+            // Resets the previusSimpleMathExpression variable.
+            previusSimpleMathExpression = "";
+
+            // Reselects the previusSimpleMathExpression variable from numbers on screen.
+            previusSimpleMathExpression = document.querySelector(".typed-number").textContent;
+
+            // Runs the previus simple expression once more
+            resultValue += eval(`${operationSymbol}${previusSimpleMathExpression}`);
 
             // Logs the resultValue.
             console.log(resultValue);
