@@ -94,6 +94,24 @@ function displayKeystroke(pressedKey, disKeyValue) {
         // Adds the currentComputedValue to the simpleMathExpression expression.
         simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
 
+    } else if (pressedKey === "/") {
+        // Saves the currentDisKeyValue to the currentComputedValue variable.
+        currentComputedValue = currentDisKeyValue;
+
+        // Resets and stores new opperation type.
+        operation = "";
+        operation = "division";
+
+        // Resets and stores new operation symbol
+        operationSymbol = "";
+        operationSymbol = "/";
+
+        // Resets disKeyValue.
+        disKeyValue.innerHTML = "";
+
+        // Adds the currentComputedValue to the simpleMathExpression expression.
+        simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
+
     } else if (pressedKey === "Enter") {
         if (resultValue == undefined) {
         // Saves the currentDisKeyValue to the currentComputedValue variable & removes enter.
@@ -149,6 +167,20 @@ function displayKeystroke(pressedKey, disKeyValue) {
 
             // Logs the resultValue.
             console.log(resultValue);
+
+        } else if (operation === "division") {
+
+            // Resets the previusSimpleMathExpression variable.
+            previusSimpleMathExpression = "";
+
+            // Reselects the previusSimpleMathExpression variable from numbers on screen.
+            previusSimpleMathExpression = document.querySelector(".typed-number").textContent;
+
+            // Runs the previus simple expression once more
+            resultValue /= previusSimpleMathExpression;
+
+            // Logs the resultValue.
+            console.log(resultValue);
         }
 
     }
@@ -163,8 +195,6 @@ document.addEventListener("keydown", function(target) {
     // Stores pressed key
     let pressedKey = target.key;
     let disKeyValue = document.querySelector(".typed-number");
-
-    // console.log(target.key);
 
     displayKeystroke(pressedKey, disKeyValue);
 });
