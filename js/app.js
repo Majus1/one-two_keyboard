@@ -16,9 +16,9 @@ let resultValue;
  * 
  * If Backspace is pressed it will it will erase the value inside "currentDisKeyValue" variable.
  * If + key is presed it triggers the addition operation.
- * If - key is pressed ...
- * If ± is pressed ...
- * If / is pressed ...
+ * If - key is pressed it triggers the substraction operation
+ * If ± key is pressed it triggers the multiplication operation
+ * If / key is pressed it triggers the devision operation
 */
 function displayKeystroke(pressedKey, disKeyValue) {
 
@@ -37,6 +37,9 @@ function displayKeystroke(pressedKey, disKeyValue) {
         currentComputedValue = "";
         simpleMathExpression = "";
         resultValue = undefined;
+
+        // Resets the result value on screen.
+        document.querySelector(".result-number").textContent = "THE RESULT";
 
         // Erases the displayed value
         disKeyValue.innerHTML = "";
@@ -123,8 +126,8 @@ function displayKeystroke(pressedKey, disKeyValue) {
         // Calculates the simpleMathExpression expression.
         resultValue = eval(simpleMathExpression);
 
-        // Logs the resultValue.
-        console.log(resultValue);
+        // Displays result on screen.
+        document.querySelector(".result-number").textContent = resultValue;
 
         } else if (operation === "addition") {
 
@@ -137,8 +140,8 @@ function displayKeystroke(pressedKey, disKeyValue) {
             // Runs the previus simple expression once more
             resultValue += eval(`${operationSymbol}${previusSimpleMathExpression}`);
 
-            // Logs the resultValue.
-            console.log(resultValue);
+            // Displays result on screen.
+            document.querySelector(".result-number").textContent = resultValue;
 
         } else if (operation === "substraction") {
 
@@ -151,8 +154,8 @@ function displayKeystroke(pressedKey, disKeyValue) {
             // Runs the previus simple expression once more
             resultValue += eval(`${operationSymbol}${previusSimpleMathExpression}`);
 
-            // Logs the resultValue.
-            console.log(resultValue);
+            // Displays result on screen.
+            document.querySelector(".result-number").textContent = resultValue;
 
         } else if (operation === "multiplication") {
 
@@ -165,8 +168,8 @@ function displayKeystroke(pressedKey, disKeyValue) {
             // Runs the previus simple expression once more
             resultValue *= previusSimpleMathExpression;
 
-            // Logs the resultValue.
-            console.log(resultValue);
+            // Displays result on screen.
+            document.querySelector(".result-number").textContent = resultValue;
 
         } else if (operation === "division") {
 
@@ -179,8 +182,8 @@ function displayKeystroke(pressedKey, disKeyValue) {
             // Runs the previus simple expression once more
             resultValue /= previusSimpleMathExpression;
 
-            // Logs the resultValue.
-            console.log(resultValue);
+            // Displays result on screen.
+            document.querySelector(".result-number").textContent = resultValue;
         }
 
     }
