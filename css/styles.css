@@ -18,6 +18,28 @@ canvas {
   display: flex;
 }
 
+.overlay_wrapper {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  z-index: 1000;
+}
+
+.overlay_wrapper h1 {
+  color: #fff;
+  padding: 0px;
+}
+
+.overlay_wrapper p {
+  color: #b3b3b3;
+  padding-bottom: 24px;
+}
+
 .hero-s_wrapper {
   display: flex;
   flex-direction: row;
@@ -34,6 +56,7 @@ canvas {
   justify-content: center;
   align-items: center;
   min-width: 700px;
+  background-color: transparent;
   /* border: solid 2px red;
   background-color: aqua; */
 }
@@ -54,3 +77,20 @@ canvas {
   border-radius: 48px;
   color: #fff;
 }
+
+/* ::::: Simple spinner ::::: */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.361);
+  border-left-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* ::::: Simple spinner ::::: */

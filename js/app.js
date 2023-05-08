@@ -8,6 +8,18 @@ let previusSimpleMathExpression = "";
 let resultValue;
 // ::::: Variables :::::
 
+// ::::: Removes overlay once all content is loaded.
+function pageLoader() {
+
+    // Removes overlay after a specific time.
+    let loaderOverlay = document.querySelector(".overlay_wrapper");
+    loaderOverlay.remove();
+
+};
+
+// Triggers function after 3 seconds
+setTimeout(pageLoader, 3000);
+// ::::: Removes overlay once all content is loaded.
 
 // ::::: Function that types out what is pressed on keyboard
 /** What does the function do
