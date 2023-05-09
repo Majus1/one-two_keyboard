@@ -24,18 +24,6 @@ setTimeout(pageLoader, 3000);
 
 
 // ::::: Allows users to only view content on big screens :::::
-// function testFunction() {
-
-//     if (window.innerWidth > 1600) {
-    
-//         // Removes overlay if screen width is nice.
-//         let smallScreenOverlay = document.querySelector(".small-screen-overlay_wrapper");
-//         smallScreenOverlay.remove();
-//     }
-// };
-// testFunction();
-
-
 function toggleSmallScreenOverlay() {
 
     // Variable
@@ -46,7 +34,6 @@ function toggleSmallScreenOverlay() {
      * If above 1600px removes overlay.
      * If not leaves the overlay on.
      */
-
     if (window.innerWidth > "1600") {
         smallScreenOverlay = document.querySelector(".small-screen-overlay_wrapper");
         smallScreenOverlay.style.display = "none";
@@ -56,8 +43,11 @@ function toggleSmallScreenOverlay() {
     }
 }
 
-
+// Listens for when a window is resizing and then triggers the toggleSmallScreenOverlay function.
 window.addEventListener('resize', toggleSmallScreenOverlay);
+
+// Triggers toggleSmallScreenOverlay function on load.
+toggleSmallScreenOverlay();
 // ::::: Allows users to only view content on big screens :::::
 
 
