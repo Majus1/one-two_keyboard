@@ -1,10 +1,64 @@
 // ::::: Variables :::::
 let operation = "";
+let operationSymbol = "";
 
-let previusComputedValue = "";
 let currentComputedValue = "";
-let resultValue = 0;
+let simpleMathExpression = "";
+let previusSimpleMathExpression = "";
+let resultValue;
 // ::::: Variables :::::
+
+
+// ::::: Removes overlay once all content is loaded. :::::
+function pageLoader() {
+
+    // Removes overlay after a specific time.
+    let loaderOverlay = document.querySelector(".loader-overlay_wrapper");
+    loaderOverlay.remove();
+
+};
+
+// Triggers function after 3 seconds
+setTimeout(pageLoader, 3000);
+// ::::: Removes overlay once all content is loaded. :::::
+
+
+// ::::: Allows users to only view content on big screens :::::
+// function testFunction() {
+
+//     if (window.innerWidth > 1600) {
+    
+//         // Removes overlay if screen width is nice.
+//         let smallScreenOverlay = document.querySelector(".small-screen-overlay_wrapper");
+//         smallScreenOverlay.remove();
+//     }
+// };
+// testFunction();
+
+
+function toggleSmallScreenOverlay() {
+
+    // Variable
+    let smallScreenOverlay = document.querySelector(".small-screen-overlay_wrapper");
+    
+    /**
+     * Checks if the window width is of a specific size.
+     * If above 1600px removes overlay.
+     * If not leaves the overlay on.
+     */
+
+    if (window.innerWidth > "1600") {
+        smallScreenOverlay = document.querySelector(".small-screen-overlay_wrapper");
+        smallScreenOverlay.style.display = "none";
+    } else {
+        smallScreenOverlay = document.querySelector(".small-screen-overlay_wrapper");
+        smallScreenOverlay.style.display = "flex";
+    }
+}
+
+
+window.addEventListener('resize', toggleSmallScreenOverlay);
+// ::::: Allows users to only view content on big screens :::::
 
 
 // ::::: Function that types out what is pressed on keyboard
@@ -14,9 +68,9 @@ let resultValue = 0;
  * 
  * If Backspace is pressed it will it will erase the value inside "currentDisKeyValue" variable.
  * If + key is presed it triggers the addition operation.
- * If - key is pressed ...
- * If ± is pressed ...
- * If / is pressed ...
+ * If - key is pressed it triggers the substraction operation
+ * If ± key is pressed it triggers the multiplication operation
+ * If / key is pressed it triggers the devision operation
 */
 function displayKeystroke(pressedKey, disKeyValue) {
 
@@ -29,28 +83,162 @@ function displayKeystroke(pressedKey, disKeyValue) {
         // Changes the displayed number on screen with the pressed key.
         disKeyValue.innerHTML = currentDisKeyValue;
     } else if (pressedKey === "Backspace") {
-        // console.log("Value erased");
+        // Resets following variables to empty
+        operation = "";
+        operationSymbol = "";
+        currentComputedValue = "";
+        simpleMathExpression = "";
+        resultValue = undefined;
+
+        // Resets the result value on screen.
+        document.querySelector(".result-number").textContent = "THE RESULT";
 
         // Erases the displayed value
         disKeyValue.innerHTML = "";
     } else if (pressedKey === "+") {
-        // Selects the addition operation & removes unwanted symbols "+", "-", "/", "*".
-        operation = "addition";
-        currentComputedValue = parseInt(currentDisKeyValue.replace(/[+-]/g, ''));
+        // Saves the currentDisKeyValue to the currentComputedValue variable.
+        currentComputedValue = currentDisKeyValue;
 
-        // Resets disKeyValue
+        // Resets and stores new opperation type.
+        operation = "";
+        operation = "addition";
+
+        // Resets and stores new operation symbol
+        operationSymbol = "";
+        operationSymbol = "+";
+
+        // Resets disKeyValue.
         disKeyValue.innerHTML = "";
 
-        // SMIR 
-        console.log(`${operation} operation is selected and ${currentComputedValue} was set as currentComputedValue`);
+        // Adds the currentComputedValue to the simpleMathExpression expression.
+        simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
 
-        resultValue += currentComputedValue;
+    } else if (pressedKey === "-") {
+        // Saves the currentDisKeyValue to the currentComputedValue variable.
+        currentComputedValue = currentDisKeyValue;
 
-        // Maybe we should make it so that we add template literals witch are once translated. THINK ABOU USING eval() function for math actions.
+        // Resets and stores new opperation type.
+        operation = "";
+        operation = "substraction";
 
+        // Resets and stores new operation symbol
+        operationSymbol = "";
+        operationSymbol = "-";
+
+        // Resets disKeyValue.
+        disKeyValue.innerHTML = "";
+
+        // Adds the currentComputedValue to the simpleMathExpression expression.
+        simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
+
+    } else if (pressedKey === "*") {
+        // Saves the currentDisKeyValue to the currentComputedValue variable.
+        currentComputedValue = currentDisKeyValue;
+
+        // Resets and stores new opperation type.
+        operation = "";
+        operation = "multiplication";
+
+        // Resets and stores new operation symbol
+        operationSymbol = "";
+        operationSymbol = "*";
+
+        // Resets disKeyValue.
+        disKeyValue.innerHTML = "";
+
+        // Adds the currentComputedValue to the simpleMathExpression expression.
+        simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
+
+    } else if (pressedKey === "/") {
+        // Saves the currentDisKeyValue to the currentComputedValue variable.
+        currentComputedValue = currentDisKeyValue;
+
+        // Resets and stores new opperation type.
+        operation = "";
+        operation = "division";
+
+        // Resets and stores new operation symbol
+        operationSymbol = "";
+        operationSymbol = "/";
+
+        // Resets disKeyValue.
+        disKeyValue.innerHTML = "";
+
+        // Adds the currentComputedValue to the simpleMathExpression expression.
+        simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`
+
+    } else if (pressedKey === "Enter") {
+        if (resultValue == undefined) {
+        // Saves the currentDisKeyValue to the currentComputedValue variable & removes enter.
+        currentComputedValue = currentDisKeyValue.replace(/[Enter]/g, '');
+
+        // Adds the currentComputedValue to the simpleMathExpression expression.
+        simpleMathExpression = `${simpleMathExpression}${currentComputedValue}`;
+
+        // Calculates the simpleMathExpression expression.
+        resultValue = eval(simpleMathExpression);
+
+        // Displays result on screen.
+        document.querySelector(".result-number").textContent = resultValue;
+
+        } else if (operation === "addition") {
+
+            // Resets the previusSimpleMathExpression variable.
+            previusSimpleMathExpression = "";
+
+            // Reselects the previusSimpleMathExpression variable from numbers on screen.
+            previusSimpleMathExpression = document.querySelector(".typed-number").textContent;
+
+            // Runs the previus simple expression once more
+            resultValue += eval(`${operationSymbol}${previusSimpleMathExpression}`);
+
+            // Displays result on screen.
+            document.querySelector(".result-number").textContent = resultValue;
+
+        } else if (operation === "substraction") {
+
+            // Resets the previusSimpleMathExpression variable.
+            previusSimpleMathExpression = "";
+
+            // Reselects the previusSimpleMathExpression variable from numbers on screen.
+            previusSimpleMathExpression = document.querySelector(".typed-number").textContent;
+
+            // Runs the previus simple expression once more
+            resultValue += eval(`${operationSymbol}${previusSimpleMathExpression}`);
+
+            // Displays result on screen.
+            document.querySelector(".result-number").textContent = resultValue;
+
+        } else if (operation === "multiplication") {
+
+            // Resets the previusSimpleMathExpression variable.
+            previusSimpleMathExpression = "";
+
+            // Reselects the previusSimpleMathExpression variable from numbers on screen.
+            previusSimpleMathExpression = document.querySelector(".typed-number").textContent;
+
+            // Runs the previus simple expression once more
+            resultValue *= previusSimpleMathExpression;
+
+            // Displays result on screen.
+            document.querySelector(".result-number").textContent = resultValue;
+
+        } else if (operation === "division") {
+
+            // Resets the previusSimpleMathExpression variable.
+            previusSimpleMathExpression = "";
+
+            // Reselects the previusSimpleMathExpression variable from numbers on screen.
+            previusSimpleMathExpression = document.querySelector(".typed-number").textContent;
+
+            // Runs the previus simple expression once more
+            resultValue /= previusSimpleMathExpression;
+
+            // Displays result on screen.
+            document.querySelector(".result-number").textContent = resultValue;
+        }
 
     }
-    
 };
 // ::::: Function that types out what is pressed on keyboard
 
@@ -58,11 +246,10 @@ function displayKeystroke(pressedKey, disKeyValue) {
 // ::::: Event listens for keyboard strokes :::::
 document.addEventListener("keydown", function(target) {
 
+    // if((pressedKey === "0" || pressedKey === "1" || pressedKey === "2" || pressedKey === "3" || pressedKey === "4" || pressedKey === "5" || pressedKey === "6" || pressedKey === "7" || pressedKey === "8" || pressedKey === "9" || pressedKey === "+" || pressedKey === "-" || pressedKey === "/" || pressedKey === "*" || pressedKey === "*" ) ) {}
     // Stores pressed key
     let pressedKey = target.key;
     let disKeyValue = document.querySelector(".typed-number");
-
-    // console.log(target.key);
 
     displayKeystroke(pressedKey, disKeyValue);
 });

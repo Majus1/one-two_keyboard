@@ -5,6 +5,7 @@
 
 body {
   margin: 0;
+  background-color: #000;
 }
 
 html,
@@ -15,6 +16,44 @@ body {
 
 canvas {
   display: flex;
+}
+
+.loader-overlay_wrapper {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  z-index: 1000;
+}
+
+.small-screen-overlay_wrapper {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  padding: 0 48px;
+  width: 100%;
+  background-color: black;
+  z-index: 900;
+}
+
+.loader-overlay_wrapper h1,
+.small-screen-overlay_wrapper h1{
+  color: #fff;
+  padding: 0px;
+}
+
+.loader-overlay_wrapper p ,
+.small-screen-overlay_wrapper p {
+  color: #b3b3b3;
+  padding-bottom: 24px;
 }
 
 .hero-s_wrapper {
@@ -28,10 +67,46 @@ canvas {
 }
 
 .math-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-width: 700px;
-  border: solid 2px red;
+  background-color: transparent;
+  /* border: solid 2px red;
+  background-color: aqua; */
 }
 
 .typed-number {
-  font-size: 24px;
+  display: inline;
+  font-size: 84px;
+  color: #fff;
 }
+
+.result-number {
+  display: inline;
+  position: absolute;
+  bottom: 100px;
+  font-size: 32px;
+  padding: 16px 96px;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 48px;
+  color: #fff;
+}
+
+/* ::::: Simple spinner ::::: */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.361);
+  border-left-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* ::::: Simple spinner ::::: */
