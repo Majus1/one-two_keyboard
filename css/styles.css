@@ -18,7 +18,7 @@ canvas {
   display: flex;
 }
 
-.overlay_wrapper {
+.loader-overlay_wrapper {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -30,12 +30,28 @@ canvas {
   z-index: 1000;
 }
 
-.overlay_wrapper h1 {
+.small-screen-overlay_wrapper {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  padding: 0 48px;
+  width: 100%;
+  background-color: black;
+  z-index: 900;
+}
+
+.loader-overlay_wrapper h1,
+.small-screen-overlay_wrapper h1{
   color: #fff;
   padding: 0px;
 }
 
-.overlay_wrapper p {
+.loader-overlay_wrapper p ,
+.small-screen-overlay_wrapper p {
   color: #b3b3b3;
   padding-bottom: 24px;
 }

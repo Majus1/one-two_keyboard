@@ -8,18 +8,58 @@ let previusSimpleMathExpression = "";
 let resultValue;
 // ::::: Variables :::::
 
-// ::::: Removes overlay once all content is loaded.
+
+// ::::: Removes overlay once all content is loaded. :::::
 function pageLoader() {
 
     // Removes overlay after a specific time.
-    let loaderOverlay = document.querySelector(".overlay_wrapper");
+    let loaderOverlay = document.querySelector(".loader-overlay_wrapper");
     loaderOverlay.remove();
 
 };
 
 // Triggers function after 3 seconds
 setTimeout(pageLoader, 3000);
-// ::::: Removes overlay once all content is loaded.
+// ::::: Removes overlay once all content is loaded. :::::
+
+
+// ::::: Allows users to only view content on big screens :::::
+// function testFunction() {
+
+//     if (window.innerWidth > 1600) {
+    
+//         // Removes overlay if screen width is nice.
+//         let smallScreenOverlay = document.querySelector(".small-screen-overlay_wrapper");
+//         smallScreenOverlay.remove();
+//     }
+// };
+// testFunction();
+
+
+function toggleSmallScreenOverlay() {
+
+    // Variable
+    let smallScreenOverlay = document.querySelector(".small-screen-overlay_wrapper");
+    
+    /**
+     * Checks if the window width is of a specific size.
+     * If above 1600px removes overlay.
+     * If not leaves the overlay on.
+     */
+
+    if (window.innerWidth > "1600") {
+        smallScreenOverlay = document.querySelector(".small-screen-overlay_wrapper");
+        smallScreenOverlay.style.display = "none";
+    } else {
+        smallScreenOverlay = document.querySelector(".small-screen-overlay_wrapper");
+        smallScreenOverlay.style.display = "flex";
+    }
+}
+
+
+window.addEventListener('resize', toggleSmallScreenOverlay);
+// ::::: Allows users to only view content on big screens :::::
+
 
 // ::::: Function that types out what is pressed on keyboard
 /** What does the function do
